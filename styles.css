@@ -1,0 +1,1198 @@
+/* ===========================
+   CSS Reset & Variables
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Light Theme Colors */
+    --bg-primary: #f5f7fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e8ecf1;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --border-color: #e2e8f0;
+    --accent-primary: #4299e1;
+    --accent-hover: #3182ce;
+    --accent-light: #bee3f8;
+    --success: #48bb78;
+    --warning: #ed8936;
+    --danger: #f56565;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-lg: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Colors */
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --bg-tertiary: #4a5568;
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --text-muted: #cbd5e0;
+    --border-color: #4a5568;
+    --accent-primary: #63b3ed;
+    --accent-hover: #4299e1;
+    --accent-light: #2c5282;
+    --success: #68d391;
+    --warning: #f6ad55;
+    --danger: #fc8181;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-lg: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===========================
+   Header
+   =========================== */
+.header {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+    color: white;
+    padding: 2rem 0;
+    box-shadow: 0 4px 6px var(--shadow);
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo-image {
+    width: 120px;
+    height: 120px;
+
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* ===========================
+   Navigation Tabs
+   =========================== */
+.nav-tabs {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 2px 4px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-tabs .container {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: var(--accent-primary);
+    background: var(--bg-tertiary);
+}
+
+.tab-btn.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.tab-btn .icon {
+    font-size: 1.3rem;
+}
+
+/* ===========================
+   Main Content
+   =========================== */
+.main-content {
+    padding: 2rem 0;
+    min-height: calc(100vh - 300px);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   Calculator Section
+   =========================== */
+/* Replace the Calculator Section CSS with this */
+
+/* ===========================
+   Calculator Section
+   =========================== */
+.calculator-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.calculator {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px var(--shadow-lg);
+}
+
+.calc-display {
+    background: var(--bg-tertiary);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    min-height: 120px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* iOS STYLE: Small text on TOP (previous expression after pressing =) */
+.calc-result {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    min-height: 1.5rem;
+    word-wrap: break-word;
+    opacity: 0.7;
+}
+
+/* iOS STYLE: BOLD text on BOTTOM (what you're typing OR the answer) */
+.calc-expression {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+.calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.calc-btn {
+    padding: 1.25rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.calc-btn.number {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.calc-btn.operator {
+    background: var(--accent-primary);
+    color: white;
+    font-size: 1.4rem;
+}
+
+.calc-btn.function {
+    background: var(--bg-tertiary);
+    color: var(--accent-primary);
+    font-size: 1rem;
+}
+
+.calc-btn.equals {
+    background: var(--success);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.calc-btn.operator:hover {
+    background: var(--accent-hover);
+}
+
+.calc-btn.equals:hover {
+    background: #38a169;
+}
+
+.calc-btn:active {
+    transform: translateY(0);
+}
+
+.calc-info {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px var(--shadow-lg);
+}
+
+.calc-info h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-primary);
+    font-size: 1.5rem;
+}
+
+.calc-info ul {
+    list-style: none;
+}
+
+.calc-info li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.calc-info li:last-child {
+    border-bottom: none;
+}
+
+/* ===========================
+   Physics Solver Section
+   =========================== */
+.physics-wrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+.physics-sidebar {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px var(--shadow);
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
+.physics-sidebar h3 {
+    margin-bottom: 1rem;
+    color: var(--accent-primary);
+    font-size: 1.3rem;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid transparent;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.category-btn:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-primary);
+}
+
+.category-btn.active {
+    background: var(--accent-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.physics-main {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.physics-topic-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.topic-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.topic-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.topic-btn.active {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+.physics-calculator h3 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.formulas {
+    background: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.formula-item {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.physics-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.btn-calculate {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-calculate:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.physics-result {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 10px;
+    border-left: 4px solid var(--success);
+}
+
+.physics-result h4 {
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+}
+
+.result-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--success);
+    margin-bottom: 1.5rem;
+}
+
+.solution-steps {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.step {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.step:last-child {
+    border-bottom: none;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===========================
+   Unit Converter Section
+   =========================== */
+.converter-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.converter-box {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px var(--shadow-lg);
+}
+
+.converter-box h2 {
+    color: var(--accent-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.875rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.conversion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-convert, .btn-factors {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.btn-convert {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.btn-convert:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.btn-factors {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn-factors:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.conversion-factors {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 10px;
+}
+
+.conversion-factors h4 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+}
+
+.factor-item {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.factor-item:last-child {
+    border-bottom: none;
+}
+
+/* ===========================
+   AI Tutor Section
+   =========================== */
+.tutor-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.chat-container {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    height: 690px;
+}
+
+.chat-header {
+    background: var(--accent-primary);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+}
+
+.chat-header h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.chat-header p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.settings-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.message {
+    display: flex;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 1rem 1.25rem;
+    border-radius: 18px;
+    line-height: 1.5;
+}
+
+.message.assistant .message-content {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-bottom-left-radius: 4px;
+}
+
+.message.user .message-content {
+    background: var(--accent-primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.875rem;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+}
+
+.btn-send {
+    padding: 0.875rem 2rem;
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-send:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+}
+
+.tutor-suggestions {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px var(--shadow-lg);
+}
+
+.tutor-suggestions h4 {
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+}
+
+.suggestion-btn {
+    width: 100%;
+    padding: 0.875rem;
+    margin-bottom: 0.75rem;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.suggestion-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateX(5px);
+}
+
+/* ===========================
+   Modal Styles
+   =========================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px var(--shadow-lg);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: var(--accent-primary);
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: var(--danger);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.modal-body small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 2px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-save, .btn-test {
+    flex: 1;
+    padding: 0.875rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.btn-save:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-test {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+}
+
+.btn-test:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.api-status {
+    padding: 1rem 1.5rem;
+    margin: 0 1.5rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.api-status.success {
+    background: rgba(72, 187, 120, 0.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+    display: block;
+}
+
+.api-status.error {
+    background: rgba(245, 101, 101, 0.1);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    display: block;
+}
+
+.api-status.info {
+    background: rgba(66, 153, 225, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+    display: block;
+}
+
+.gravity-input-group {
+    background: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.gravity-input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.gravity-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.gravity-custom {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    display: none;
+}
+
+.gravity-custom.active {
+    display: block;
+}
+
+/* ===========================
+   Footer
+   =========================== */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 2px solid var(--border-color);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 4rem;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 968px) {
+    .calculator-wrapper,
+    .physics-wrapper,
+    .tutor-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .physics-sidebar {
+        position: static;
+        max-height: none;
+    }
+    
+    .conversion-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chat-container {
+        height: 500px;
+    }
+}
+
+@media (max-width: 640px) {
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .logo-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .logo-container {
+        gap: 1rem;
+    }
+    
+    .theme-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .calc-result {
+        font-size: 2rem;
+    }
+    
+    .calc-btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .converter-box,
+    .calculator,
+    .calc-info {
+        padding: 1.5rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+}
+
+/* ===========================
+   Scrollbar Styling
+   =========================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}
+
+
+.message.assistant .message-content h4 {
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 1rem 0 0.5rem 0;
+    padding-top: 0.5rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.message.assistant .message-content h4:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.message.assistant .message-content strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.message.assistant .message-content ul {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.message.assistant .message-content li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.message.assistant .message-content hr {
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+.message.assistant .message-content br {
+    display: block;
+    content: "";
+    margin: 0.5rem 0;
+}
+
+/* Math/Code formatting */
+.message.assistant .message-content code {
+    background: var(--bg-secondary);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--accent-primary);
+}
+
+/* Better spacing for paragraphs */
+.message.assistant .message-content p {
+    margin: 0.75rem 0;
+    line-height: 1.7;
+}
+
+/* Make formulas stand out */
+.message.assistant .message-content [class*="formula"],
+.message.assistant .message-content [class*="equation"] {
+    background: var(--bg-primary);
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin: 0.5rem 0;
+    display: block;
+    font-family: 'Courier New', monospace;
+}
+
+/* Examples section */
+.message.assistant .message-content blockquote {
+    border-left: 4px solid var(--accent-primary);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Warning/Note styling */
+.message.assistant .message-content [class*="warning"],
+.message.assistant .message-content [class*="note"] {
+    background: rgba(237, 137, 54, 0.1);
+    border-left: 4px solid var(--warning);
+    padding: 0.75rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}

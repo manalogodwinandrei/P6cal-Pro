@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P6Cal Pro - Calculator & Physics Solver</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="logo.png" alt="P6Cal Pro Logo" class="logo-image" id="logoImage">
+                    <div class="logo-text">
+                        <h1 class="logo">P6Cal Pro</h1>
+                        <p class="tagline">Calculator • Physics • Conversions • AI Physics Chatbot</p>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon" style="display:none;">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="container">
+            <button class="tab-btn active" data-tab="calculator">
+                Calculator
+            </button>
+            <button class="tab-btn" data-tab="physics">
+                Physics Solver
+            </button>
+            <button class="tab-btn" data-tab="converter">
+                Unit Converter
+            </button>
+            <button class="tab-btn" data-tab="tutor">
+                AI Physics Chatbot
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+<!-- Replace your calculator section with this -->
+<section id="calculator" class="tab-content active">
+    <div class="calculator-wrapper">
+        <div class="calculator">
+            <div class="calc-display">
+                <!-- iOS STYLE: Small expression on TOP, Bold input/result on BOTTOM -->
+                <div class="calc-result" id="calcResult"></div>
+                <div class="calc-expression" id="calcExpression">0</div>
+            </div>
+            <div class="calc-buttons">
+                <!-- Row 1 -->
+                <button class="calc-btn function" data-action="clear">C</button>
+                <button class="calc-btn function" data-action="backspace">⌫</button>
+                <button class="calc-btn function" data-action="(">(</button>
+                <button class="calc-btn function" data-action=")">)</button>
+                
+                <!-- Row 2 - ARITHMETIC OPERATORS TOGETHER -->
+                <button class="calc-btn operator" data-action="+">+</button>
+                <button class="calc-btn operator" data-action="-">−</button>
+                <button class="calc-btn operator" data-action="*">×</button>
+                <button class="calc-btn operator" data-action="/">÷</button>
+                
+                <!-- Row 3 -->
+                <button class="calc-btn number" data-action="7">7</button>
+                <button class="calc-btn number" data-action="8">8</button>
+                <button class="calc-btn number" data-action="9">9</button>
+                <button class="calc-btn function" data-action="sqrt">√</button>
+                
+                <!-- Row 4 -->
+                <button class="calc-btn number" data-action="4">4</button>
+                <button class="calc-btn number" data-action="5">5</button>
+                <button class="calc-btn number" data-action="6">6</button>
+                <button class="calc-btn function" data-action="^">x^y</button>
+                
+                <!-- Row 5 -->
+                <button class="calc-btn number" data-action="1">1</button>
+                <button class="calc-btn number" data-action="2">2</button>
+                <button class="calc-btn number" data-action="3">3</button>
+                <button class="calc-btn function" data-action="!">n!</button>
+                
+                <!-- Row 6 -->
+                <button class="calc-btn number" data-action="0">0</button>
+                <button class="calc-btn number" data-action=".">.</button>
+                <button class="calc-btn function" data-action="%">%</button>
+                <button class="calc-btn equals" data-action="=">=</button>
+                
+                <!-- Row 7 - Trigonometry -->
+                <button class="calc-btn function" data-action="sin">sin</button>
+                <button class="calc-btn function" data-action="cos">cos</button>
+                <button class="calc-btn function" data-action="tan">tan</button>
+                <button class="calc-btn function" data-action="pi">π</button>
+                
+                <!-- Row 8 - Logarithms -->
+                <button class="calc-btn function" data-action="log2">log₂</button>
+                <button class="calc-btn function" data-action="log10">log₁₀</button>
+                <button class="calc-btn function" data-action="ln">ln</button>
+                <button class="calc-btn function" data-action="e">e</button>
+            </div>
+        </div>
+        <div class="calc-info">
+            <h3>📐 Scientific Calculator</h3>
+            <ul>
+                <li><strong>Basic Operations:</strong> +, −, ×, ÷</li>
+                <li><strong>Trigonometry:</strong> sin, cos, tan (degrees)</li>
+                <li><strong>Advanced:</strong> √, x^y, n!, %</li>
+                <li><strong>Logarithms:</strong> log₂, log₁₀, ln (natural log)</li>
+                <li><strong>Constants:</strong> π (pi), e (Euler's number)</li>
+                <li><strong>Parentheses:</strong> ( ) for grouping</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+            <!-- Physics Solver Tab -->
+            <section id="physics" class="tab-content">
+                <div class="physics-wrapper">
+                    <div class="physics-sidebar">
+                        <h3>Categories</h3>
+                        <div class="category-list">
+                            <button class="category-btn active" data-category="vector">Vector Arithmetic</button>
+                            <button class="category-btn" data-category="kinematics_horizontal">Kinematics (Horizontal)</button>
+                            <button class="category-btn" data-category="kinematics_vertical">Kinematics (Vertical)</button>
+                            <button class="category-btn" data-category="kinematics_projectile">Kinematics (Projectile)</button>
+                            <button class="category-btn" data-category="dynamics_forces">Dynamics (Forces)</button>
+                            <button class="category-btn" data-category="dynamics_friction">Dynamics (Friction)</button>
+                            <button class="category-btn" data-category="dynamics_work_energy">Work & Energy</button>
+                            <button class="category-btn" data-category="electricity">Electricity</button>
+                            <button class="category-btn" data-category="magnetism">Magnetism</button>
+                            <button class="category-btn" data-category="waves_sound">Waves (Sound)</button>
+                            <button class="category-btn" data-category="waves_light">Waves (Light)</button>
+                        </div>
+                    </div>
+                    
+                    <div class="physics-main">
+                        <div class="physics-topic-selector" id="topicSelector">
+                            <!-- Topics will be populated by JavaScript -->
+                        </div>
+                        
+                        <div class="physics-calculator" id="physicsCalculator">
+                            <h3 id="topicTitle">Select a topic</h3>
+                            <div class="formulas" id="formulas">
+                                <!-- Formulas will be displayed here -->
+                            </div>
+                            <div class="physics-inputs" id="physicsInputs">
+                                <!-- Input fields will be generated here -->
+                            </div>
+                            <button class="btn-calculate" id="calculateBtn" style="display:none;">Calculate</button>
+                            
+                            <div class="physics-result" id="physicsResult" style="display:none;">
+                                <h4>Result:</h4>
+                                <div class="result-value" id="resultValue"></div>
+                                <h4>Solution Steps:</h4>
+                                <div class="solution-steps" id="solutionSteps"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unit Converter Tab -->
+            <section id="converter" class="tab-content">
+                <div class="converter-wrapper">
+                    <div class="converter-box">
+                        <h2>Unit Converter</h2>
+                        
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="convCategory" class="form-control">
+                                <option value="length">Length</option>
+                                <option value="mass">Mass / Weight</option>
+                                <option value="area">Area</option>
+                                <option value="volume">Volume</option>
+                                <option value="time">Time</option>
+                                <option value="temperature">Temperature</option>
+                                <option value="energy">Energy</option>
+                                <option value="pressure">Pressure</option>
+                            </select>
+                        </div>
+                        
+                        <div class="conversion-grid">
+                            <div class="form-group">
+                                <label>From</label>
+                                <select id="convFrom" class="form-control">
+                                    <!-- Options populated by JS -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input type="number" id="convValue" class="form-control" placeholder="Enter value">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>To</label>
+                                <select id="convTo" class="form-control">
+                                    <!-- Options populated by JS -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Result</label>
+                                <input type="text" id="convResult" class="form-control" readonly placeholder="Result">
+                            </div>
+                        </div>
+                        
+                        <button class="btn-convert" id="convertBtn">Convert</button>
+                        <button class="btn-factors" id="showFactorsBtn">Show Conversion Factors</button>
+                        
+                        <div class="conversion-factors" id="conversionFactors" style="display:none;">
+                            <h4>Conversion Factors</h4>
+                            <div id="factorsContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           <!-- AI Tutor Tab - Replace your tutor section with this -->
+<section id="tutor" class="tab-content">
+    <div class="tutor-wrapper">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h3>AI Physics Chatbot</h3>
+                <p>Ask me about formulas, concepts, or problem-solving strategies!</p>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" class="chat-input" placeholder="Ask a question...">
+                <button class="btn-send" id="sendBtn">Send</button>
+            </div>
+        </div>
+        
+        <div class="tutor-suggestions">
+            <h4>Quick Topics</h4>
+            <button class="suggestion-btn" data-question="Explain Newton's laws of motion">Newton's Laws</button>
+            <button class="suggestion-btn" data-question="How do I calculate projectile motion?">Projectile Motion</button>
+            <button class="suggestion-btn" data-question="Explain Ohm's law">Ohm's Law</button>
+            <button class="suggestion-btn" data-question="What is kinetic energy?">Kinetic Energy</button>
+            <button class="suggestion-btn" data-question="How do vectors work?">Vector Basics</button>
+            <button class="suggestion-btn" data-question="Explain potential energy">Potential Energy</button>
+            <button class="suggestion-btn" data-question="What is friction and how does it work?">Friction</button>
+            <button class="suggestion-btn" data-question="Explain gravitational force">Gravitational Force</button>
+            <button class="suggestion-btn" data-question="Explain work and power">Work & Power</button>
+            <button class="suggestion-btn" data-question="What is electric current?">Electric Current</button>
+        </div>
+    </div>
+</section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 P6Cal Pro. Advanced Calculator.</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
