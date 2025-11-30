@@ -653,7 +653,7 @@ async function callGemini(message) {
     }
 }async function callGemini(message) {
     try {
-        const response = await fetch('http://localhost:3000/api/chat', {
+        const response = await fetch('api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
