@@ -133,7 +133,6 @@ function handleCalculatorInput(action) {
 }
 
 function evaluateExpression(expr) {
-    // Save original for error reporting
     const original = expr;
     
     try {
@@ -296,6 +295,8 @@ function displayPhysicsCalculator(category, topicKey) {
     
     const inputsEl = document.getElementById('physicsInputs');
     inputsEl.innerHTML = '';
+    
+    // Render initial inputs
     topic.inputs.forEach(input => {
         const group = document.createElement('div');
         group.className = 'input-group';
@@ -304,10 +305,16 @@ function displayPhysicsCalculator(category, topicKey) {
         label.textContent = `${input.label} ${input.unit ? '(' + input.unit + ')' : ''}`;
         
         const inputField = document.createElement('input');
-        inputField.type = 'number';
+        inputField.type = input.type || 'number';
         inputField.step = 'any';
         inputField.name = input.name;
         inputField.placeholder = `Enter ${input.label.toLowerCase()}`;
+        
+        if (input.name === 'numComponents') {
+            inputField.addEventListener('change', () => {
+                calculatePhysics(category, topicKey);
+            });
+        }
         
         group.appendChild(label);
         group.appendChild(inputField);
@@ -401,6 +408,61 @@ function calculatePhysics(category, topicKey) {
     });
     
     const result = topic.usesGravity ? topic.calculate(inputs, currentGravity) : topic.calculate(inputs);
+    
+    if (result.dynamicInputs && result.dynamicInputs.length > 0) {
+        const inputsEl = document.getElementById('physicsInputs');
+        
+
+        const existingDynamicInputs = inputsEl.querySelectorAll('[data-dynamic="true"]');
+        
+        if (existingDynamicInputs.length === 0) {
+
+            result.dynamicInputs.forEach(input => {
+                const group = document.createElement('div');
+                group.className = 'input-group';
+                group.setAttribute('data-dynamic', 'true');
+                
+                const label = document.createElement('label');
+                label.textContent = `${input.label} ${input.unit ? '(' + input.unit + ')' : ''}`;
+                
+                const inputField = document.createElement('input');
+                inputField.type = 'number';
+                inputField.step = 'any';
+                inputField.name = input.name;
+                inputField.placeholder = `Enter ${input.label.toLowerCase()}`;
+                
+                if (inputs[input.name]) {
+                    inputField.value = inputs[input.name];
+                }
+                
+                group.appendChild(label);
+                group.appendChild(inputField);
+                inputsEl.appendChild(group);
+            });
+        } else if (existingDynamicInputs.length !== result.dynamicInputs.length) {
+
+            existingDynamicInputs.forEach(el => el.remove());
+            
+            result.dynamicInputs.forEach(input => {
+                const group = document.createElement('div');
+                group.className = 'input-group';
+                group.setAttribute('data-dynamic', 'true');
+                
+                const label = document.createElement('label');
+                label.textContent = `${input.label} ${input.unit ? '(' + input.unit + ')' : ''}`;
+                
+                const inputField = document.createElement('input');
+                inputField.type = 'number';
+                inputField.step = 'any';
+                inputField.name = input.name;
+                inputField.placeholder = `Enter ${input.label.toLowerCase()}`;
+                
+                group.appendChild(label);
+                group.appendChild(inputField);
+                inputsEl.appendChild(group);
+            });
+        }
+    }
     
     const resultEl = document.getElementById('physicsResult');
     const resultValueEl = document.getElementById('resultValue');
@@ -617,7 +679,7 @@ function sendMessage() {
 
 async function callGemini(message) {
     try {
-        const response = await fetch('/api/chat', {
+        const response = await fetch('http://localhost:3000/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -653,7 +715,7 @@ async function callGemini(message) {
     }
 }async function callGemini(message) {
     try {
-        const response = await fetch('api/chat', {
+        const response = await fetch('http://localhost:3000/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
