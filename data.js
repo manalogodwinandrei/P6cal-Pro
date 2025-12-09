@@ -129,31 +129,64 @@ const conversionData = {
 // ===========================
 const physicsFormulas = {
     vector: {
-        magnitude: {
-            name: 'Vector Magnitude',
-            formulas: ['R = √(x² + y²)', 'R = √(A² + B²)'],
-            inputs: [
-                { name: 'x', label: 'X Component', unit: '' },
-                { name: 'y', label: 'Y Component', unit: '' }
-            ],
-            calculate: (inputs) => {
-                const x = parseFloat(inputs.x) || 0;
-                const y = parseFloat(inputs.y) || 0;
-                const magnitude = Math.sqrt(x * x + y * y);
-                return {
-                    result: magnitude,
-                    unit: 'units',
-                    steps: [
-                        `Given: x = ${x}, y = ${y}`,
-                        `Formula: R = √(x² + y²)`,
-                        `R = √(${x}² + ${y}²)`,
-                        `R = √(${x*x} + ${y*y})`,
-                        `R = √${x*x + y*y}`,
-                        `R = ${magnitude.toFixed(4)} units`
-                    ]
-                };
+magnitude: {
+    name: 'Vector Magnitude',
+    formulas: ['|V| = √(v₁² + v₂² + ... + vₙ²)'],
+    inputs: [
+        { name: 'numComponents', label: 'Number of Components', unit: '', type: 'number' }
+    ],
+    calculate: (inputs) => {
+        const numComponents = parseInt(inputs.numComponents) || 2;
+        
+        const componentValues = [];
+        let allComponentsProvided = true;
+        
+        for (let i = 1; i <= numComponents; i++) {
+            const componentKey = `component${i}`;
+            if (inputs[componentKey] === undefined || inputs[componentKey] === '') {
+                allComponentsProvided = false;
+                break;
             }
-        },
+            componentValues.push(parseFloat(inputs[componentKey]) || 0);
+        }
+        
+        const dynamicInputs = Array.from({ length: numComponents }, (_, i) => ({
+            name: `component${i + 1}`,
+            label: `Component ${i + 1} (v${i + 1})`,
+            unit: ''
+        }));
+        
+
+        if (!allComponentsProvided) {
+            return {
+                result: `Enter all ${numComponents} component values below`,
+                unit: '',
+                steps: [`Please fill in all ${numComponents} vector components to calculate magnitude`],
+                dynamicInputs: dynamicInputs
+            };
+        }
+        
+        const sumOfSquares = componentValues.reduce((sum, val) => sum + val * val, 0);
+        const magnitude = Math.sqrt(sumOfSquares);
+
+        const componentList = componentValues.map((v, i) => `v${i + 1} = ${v}`).join(', ');
+        const squaresCalc = componentValues.map((v, i) => `(${v})²`).join(' + ');
+        
+        const steps = [
+            `Given: ${numComponents} components: ${componentList}`,
+            `Formula: |V| = √(v₁² + v₂² + ... + vₙ²)`,
+            `Sum of squares: ${squaresCalc} = ${sumOfSquares.toFixed(4)}`,
+            `Magnitude: |V| = √${sumOfSquares.toFixed(4)} = ${magnitude.toFixed(4)}`
+        ];
+        
+        return {
+            result: magnitude.toFixed(4),
+            unit: 'units',
+            steps: steps,
+            dynamicInputs: dynamicInputs
+        };
+    }
+},
         direction: {
             name: 'Vector Direction (Angle)',
             formulas: ['θ = tan⁻¹(y/x)'],
@@ -177,31 +210,7 @@ const physicsFormulas = {
                 };
             }
         },
-        components: {
-            name: 'Vector Components',
-            formulas: ['x = R cos θ', 'y = R sin θ'],
-            inputs: [
-                { name: 'magnitude', label: 'Magnitude (R)', unit: '' },
-                { name: 'angle', label: 'Angle (θ)', unit: '°' }
-            ],
-            calculate: (inputs) => {
-                const R = parseFloat(inputs.magnitude) || 0;
-                const theta = parseFloat(inputs.angle) || 0;
-                const rad = theta * (Math.PI / 180);
-                const x = R * Math.cos(rad);
-                const y = R * Math.sin(rad);
-                return {
-                    result: `x = ${x.toFixed(4)}, y = ${y.toFixed(4)}`,
-                    unit: '',
-                    steps: [
-                        `Given: R = ${R}, θ = ${theta}°`,
-                        `Formulas: x = R cos θ, y = R sin θ`,
-                        `x = ${R} × cos(${theta}°) = ${x.toFixed(4)}`,
-                        `y = ${R} × sin(${theta}°) = ${y.toFixed(4)}`
-                    ]
-                };
-            }
-        },
+
         lawOfCosines: {
             name: 'Law of Cosines',
             formulas: ['c² = a² + b² - 2ab cos(C)', 'c = √(a² + b² - 2ab cos(C))'],
@@ -265,52 +274,28 @@ lawOfSines: {
   }
 },
 kinematics_horizontal: {
-    speed: {
-        name: 'Speed',
-        formulas: ['s = d/t'],
-        inputs: [
-            { name: 'd', label: 'Distance (d)', unit: 'm' },
-            { name: 't', label: 'Time (t)', unit: 's' }
-        ],
-        calculate: (inputs) => {
-            const d = parseFloat(inputs.d) || 0;
-            const t = parseFloat(inputs.t) || 1;
-            const s = d / t;
-            return {
-                result: s,
-                unit: 'm/s',
-                steps: [
-                    `Given: d = ${d} m, t = ${t} s`,
-                    `Formula: s = d/t`,
-                    `s = ${d}/${t}`,
-                    `s = ${s.toFixed(4)} m/s`
-                ]
-            };
-        }
-    },
-    velocity: {
-        name: 'Velocity',
-        formulas: ['v = displacement/total time'],
-        inputs: [
-            { name: 'displacement', label: 'Displacement', unit: 'm' },
-            { name: 'time', label: 'Total Time', unit: 's' }
-        ],
-        calculate: (inputs) => {
-            const disp = parseFloat(inputs.displacement) || 0;
-            const time = parseFloat(inputs.time) || 1;
-            const v = disp / time;
-            return {
-                result: v,
-                unit: 'm/s',
-                steps: [
-                    `Given: displacement = ${disp} m, time = ${time} s`,
-                    `Formula: v = displacement/time`,
-                    `v = ${disp}/${time}`,
-                    `v = ${v.toFixed(4)} m/s`
-                ]
-            };
-        }
-    },
+speedVelocity: {
+    name: 'Speed / Velocity',
+    formulas: ['Speed: s = d/t', 'Velocity: v = displacement/time'],
+    inputs: [
+        { name: 'distance', label: 'Distance/Displacement', unit: 'm' },
+        { name: 'time', label: 'Time', unit: 's' }
+    ],
+    calculate: (inputs) => {
+        const distance = parseFloat(inputs.distance) || 0;
+        const time = parseFloat(inputs.time) || 1;
+        const result = distance / time;
+        return {
+            result: result.toFixed(4),
+            unit: 'm/s',
+            steps: [
+                `Given: distance/displacement = ${distance} m, time = ${time} s`,
+                `Formula: speed/velocity = distance/time`,
+                `Result = ${distance}/${time} = ${result.toFixed(4)} m/s`
+            ]
+        };
+    }
+},
     finalVelocity: {
         name: 'Final Velocity',
         formulas: ['vf = vi + at', 'vf² = vi² + 2ad'],
@@ -803,7 +788,7 @@ rangeWithVelocityAndAngle: {
         }
     },
 dynamics_friction: {
-    // General Friction (existing)
+
     frictionForce: {
         name: 'Frictional Force',
         formulas: ['Ff = μW', 'Ff = μmg'],
@@ -854,7 +839,6 @@ dynamics_friction: {
         }
     },
     
-    // Specific Types (from images)
     staticFrictionForce: {
         name: 'Static Frictional Force',
         formulas: ['Fs = μsW'],
